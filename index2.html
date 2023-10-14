@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///C:/Users/india/Desktop/OASIS/t.c/html/index2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Temperature Converter </title>
+    <style>
+        *{
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYndVc8giXKxSAtB6QKAxSXo7mQ8pgjjEfC4tkX5mloeCFc6slqLI722Qbrmo6kqDh4Tw&usqp=CAU");
+            background-repeat: no-repeat;
+            background-position: fixed;
+            background-size: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cac4c4; /* Light coral background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #080808; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(6, 6, 6, 0.2);
+        }
+        h1 {
+            color: #050404;
+        }
+        #enter temperatureButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f8f2f2;
+            color: #0e0d0d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #temperatureInput {
+            padding: 10px;
+            font-size: 18px;
+            border: 2px solid hwb(0 2% 98%);
+            border-radius: 5px;
+            width: 200px;
+            color: #050505;
+        }
+        #unitSelector {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #070707;
+            border-radius: 5px;
+            margin: 10px;
+            background-color: #ece7e7;
+        }
+        #convertButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #050404;
+            color: #0e0d0d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #0b0a0a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Temperature Converter </h1>
+        <input type="text" id="temperatureInput" placeholder="Enter temperature">
+        <select id="unitSelector">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="kelvin">Kelvin (K)</option>
+        </select>
+        <br>
+        <button id="convertButton" onclick="convertTemperature()">Convert</button>
+        <div id="result">Converted temperature: 296.15 K</div>
+    </div>
+    <script>
+        function convertTemperature() {
+            const inputElement = document.getElementById('temperatureInput');
+            const unitSelector = document.getElementById('unitSelector');
+            const resultElement = document.getElementById('result');
+            const EnterElement = document.getElementById('Enter temperature Button');
+
+            const inputTemperature = parseFloat(inputElement.value);
+            const selectedUnit = unitSelector.value;
+            
+            if (isNaN(inputTemperature)) {
+                resultElement.textContent = 'Please enter a valid number.';
+                return;
+            }
+            
+            let convertedTemperature;
+            let resultUnit;
+            
+            switch (selectedUnit) {
+                case 'celsius':
+                    convertedTemperature = (inputTemperature - 32) * 5/9;
+                    resultUnit = '°C';
+                    break;
+                case 'fahrenheit':
+                    convertedTemperature = (inputTemperature * 9/5) + 32;
+                    resultUnit = '°F';
+                    break;
+                case 'kelvin':
+                    convertedTemperature = inputTemperature + 273.15;
+                    resultUnit = 'K';
+                    break;
+                default:
+                    resultElement.textContent = 'Invalid unit selection.';
+                    return;
+            }
+            
+            resultElement.textContent = `Converted temperature: ${convertedTemperature.toFixed(2)} ${resultUnit}`;
+        }
+    </script>
+
+</body></html>
